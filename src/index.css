@@ -10,3 +10,55 @@
 @import "./css/styles/style.css";
 @import "./css/colors/scheme-01.css";
 @import "./css/styles/coloring.css";
+
+.slider-container {
+    position: relative;
+  }
+  
+  .slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background-color: rgba(248, 246, 246);
+    color: #000;
+    border: #666666 solid 2px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+  }
+  
+  .prev-arrow {
+    left: -30px;
+  }
+  
+  .next-arrow {
+    right: -30px;
+  }
+  
+  .slider-arrow:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+
+  .skeleton-box {
+    background-color: #e0e0e0;
+    animation: shimmer 1.5s infinite;
+  }
+  
+  @keyframes shimmer {
+    0% {
+      background-color: #e0e0e0;
+    }
+    50% {
+      background-color: #f0f0f0;
+    }
+    100% {
+      background-color: #e0e0e0;
+    }
+  }
