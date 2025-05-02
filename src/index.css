@@ -54,12 +54,12 @@
   .nft_countdown {
     position: absolute;
     top: 0;
-    background-color:#f0f0f0ec;
-    border-radius: 12px;;
-    border: solid 1px #a71aac;
-    padding: 0 6px;
+    background-color:#fff;
+    border-radius: 30px;;
+    border: solid 2px #8364e3;
+    padding: 1px 10px;
     font-size: 14px;
-    color: #a71aac;
+    color: #0d0c22;
     font-weight: bold;
     margin-top: 10px;
     margin-left: 4px;
