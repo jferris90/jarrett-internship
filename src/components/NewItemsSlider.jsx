@@ -3,39 +3,10 @@ import Slider from "react-slick";
 import { Link } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
 import nftImage from "../images/nftImage.jpg";
+import Countdown from "./Countdown";
 
-const CollectionSlider = ({ collections }) => {
+const NewItemsSlider = ({ collections }) => {
   const sliderRef = useRef(null);
-
-  const calculateCountdown = (expiryDate) => {
-    const now = new Date();
-    const expiry = new Date(expiryDate);
-    const difference = expiry - now;
-
-    if (difference <= 0) {
-      return "Expired";
-    }
-
-    const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((difference / (1000 * 60)) % 60);
-    const seconds = Math.floor((difference / 1000) % 60);
-
-    return `${hours}h ${minutes}m ${seconds}s`;
-  };
-
-  const [countdowns, setCountdowns] = useState(
-    collections.map((item) => calculateCountdown(item.expiryDate))
-  );
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCountdowns(
-        collections.map((item) => calculateCountdown(item.expiryDate))
-      );
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [collections]);
 
   const settings = {
     dots: true,
@@ -102,7 +73,7 @@ const CollectionSlider = ({ collections }) => {
               
             </div>
             <div className="nft_countdown">
-              {countdowns[index]}
+              <Countdown expiryDate={collection.expiryDate} />
             </div>
             <div>
               <div className="nft_end">
@@ -126,4 +97,4 @@ const CollectionSlider = ({ collections }) => {
   );
 };
 
-export default CollectionSlider;
+export default NewItemsSlider;
