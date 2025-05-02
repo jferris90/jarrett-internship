@@ -50,6 +50,30 @@
     background-color: #e0e0e0;
     animation: shimmer 1.5s infinite;
   }
+
+  .nft_countdown {
+    position: absolute;
+    top: 0;
+    background-color:#f0f0f0ec;
+    border-radius: 12px;;
+    border: solid 1px #a71aac;
+    padding: 0 6px;
+    font-size: 14px;
+    color: #a71aac;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-left: 4px;
+    text-align: center;
+  }
+
+  .nft_end {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    margin: 0 10px;
+  }
   
   @keyframes shimmer {
     0% {
