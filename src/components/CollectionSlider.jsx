@@ -36,7 +36,7 @@ const CollectionSlider = ({ collections }) => {
   };
 
   return (
-    <div className="slider-container">
+    <div className="slider-container" data-aos="slide-left" data-aos-duration="1000">
       <button
         className="slider-arrow prev-arrow"
         onClick={() => sliderRef.current.slickPrev()}
