@@ -30,25 +30,25 @@ const ExploreItems = () => {
     setVisibleItems((prevVisibleItems) => prevVisibleItems + 4);
   };
 
-  const filterItems = (event) => {
+
+  const filterExploreItems = async (event) => {
     const filterValue = event.target.value;
-
-    const sortedItems = [...items];
-    if (filterValue === "price_low_to_high") {
-      sortedItems.sort((a, b) => a.price - b.price);
-    } else if (filterValue === "price_high_to_low") {
-      sortedItems.sort((a, b) => b.price - a.price);
-    } else if (filterValue === "likes_high_to_low") {
-      sortedItems.sort((a, b) => b.likes - a.likes);
+    try {
+      const response = await axios.get(
+        `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=${filterValue}`
+      );
+      setItems(response.data);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching explore items:", error);
+      setLoading(false);
     }
-
-    setItems(sortedItems);
   };
 
   return (
     <>
       <div>
-        <select id="filter-items" defaultValue="" onChange={filterItems}>
+        <select id="filter-items" defaultValue="" onChange={filterExploreItems}>
           <option value="">Default</option>
           <option value="price_low_to_high">Price, Low to High</option>
           <option value="price_high_to_low">Price, High to Low</option>
@@ -63,19 +63,7 @@ const ExploreItems = () => {
               style={{ display: "block", backgroundSize: "cover" }}
             >
               <div className="nft__item">
-                <div className="author_list_pp">
-                  <Skeleton width="50px" height="50px" borderRadius="50%" />
-                </div>
-                <div className="de_countdown">
-                  <Skeleton width="100px" height="20px" />
-                </div>
-                <div className="nft__item_wrap">
-                  <Skeleton width="100%" height="200px" borderRadius="8px" />
-                </div>
-                <div className="nft__item_info">
-                  <Skeleton width="80%" height="20px" />
-                  <Skeleton width="60%" height="20px" />
-                </div>
+                <Skeleton width="100%" height="250px" borderRadius="8px" />
               </div>
             </div>
           ))
@@ -102,7 +90,7 @@ const ExploreItems = () => {
                 </div>
                 <div className="de_countdown"><Countdown expiryDate={item.expiryDate} /></div>
                 <div className="nft__item_wrap">
-                  <Link to={`/item-details/${item.id}`}>
+                  <Link to={`/item-details/${item.nftId}`}>
                     <img
                       src={item.nftImage}
                       className="lazy nft__item_preview"
@@ -111,7 +99,7 @@ const ExploreItems = () => {
                   </Link>
                 </div>
                 <div className="nft__item_info">
-                  <Link to={`/item-details/${item.id}`}>
+                  <Link to={`/item-details/${item.nftId}`}>
                     <h4>{item.title}</h4>
                   </Link>
                   <div className="nft__item_price">{item.price} ETH</div>
